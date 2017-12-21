@@ -152,9 +152,39 @@ module TelstraMessagingApi
     def self.form_encode_parameters(form_parameters)
       encoded = {}
       form_parameters.each do |key, value|
-        encoded.merge!(APIHelper.form_encode(value, key))
+        encoded.merge!(APIHelper.form_encode(value, key, formatting:
+          Configuration.array_serialization))
       end
       encoded
+    end
+
+    def self.custom_merge(a, b)
+      x = {}
+      a.each do |key, value_a|
+        b.each do |k, value_b|
+          next unless key == k
+          x[k] = []
+          if value_a.instance_of? Array
+            value_a.each do |v|
+              x[k].push(v)
+            end
+          else
+            x[k].push(value_a)
+          end
+          if value_b.instance_of? Array
+            value_b.each do |v|
+              x[k].push(v)
+            end
+          else
+            x[k].push(value_b)
+          end
+          a.delete(k)
+          b.delete(k)
+        end
+      end
+      x.merge!(a)
+      x.merge!(b)
+      x
     end
 
     # Form encodes an object.
@@ -162,8 +192,11 @@ module TelstraMessagingApi
     # @param [String] The name of the object.
     # @return [Hash] A form encoded representation of the object in the form
     # of a hash.
-    def self.form_encode(obj, instance_name)
+    def self.form_encode(obj, instance_name, formatting: 'indexed')
       retval = {}
+
+      serializable_types = [String, Numeric, TrueClass,
+                            FalseClass, Date, DateTime]
 
       # If this is a structure, resolve it's field names.
       obj = obj.to_hash if obj.is_a? BaseModel
@@ -172,14 +205,33 @@ module TelstraMessagingApi
       if obj.nil?
         nil
       elsif obj.instance_of? Array
-        obj.each_with_index do |value, index|
-          retval.merge!(APIHelper.form_encode(value, instance_name + '[' +
-            index.to_s + ']'))
+        if formatting == 'indexed'
+          obj.each_with_index do |value, index|
+            retval.merge!(APIHelper.form_encode(value, instance_name + '[' +
+              index.to_s + ']'))
+          end
+        elsif serializable_types.map { |x| obj[0].is_a? x }.any?
+          obj.each do |value|
+            abc = if formatting == 'unindexed'
+                    APIHelper.form_encode(value, instance_name + '[]',
+                                          formatting: formatting)
+                  else
+                    APIHelper.form_encode(value, instance_name,
+                                          formatting: formatting)
+                  end
+            retval = APIHelper.custom_merge(retval, abc)
+            # print retval
+          end
+        else
+          obj.each_with_index do |value, index|
+            retval.merge!(APIHelper.form_encode(value, instance_name + '[' +
+              index.to_s + ']', formatting: formatting))
+          end
         end
       elsif obj.instance_of? Hash
         obj.each do |key, value|
           retval.merge!(APIHelper.form_encode(value, instance_name + '[' +
-            key + ']'))
+            key + ']', formatting: formatting))
         end
       else
         retval[instance_name] = obj

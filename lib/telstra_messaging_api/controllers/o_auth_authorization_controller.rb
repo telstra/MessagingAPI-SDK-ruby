@@ -44,7 +44,7 @@ module TelstraMessagingApi
         'scope' => scope
       }
       if !_parameters.nil? && !_field_parameters.nil?
-        _parameters.merge!(APIHelper.form_encode_parameters(_field_parameters))
+        _parameters.merge!(_field_parameters)
       end
       _parameters = APIHelper.form_encode_parameters(_parameters)
 

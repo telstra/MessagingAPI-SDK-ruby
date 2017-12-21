@@ -27,14 +27,12 @@ module TelstraMessagingApi
 
     # A mapping from model property names to API property names.
     def self.names
-      if @_hash.nil?
-        @_hash = {}
-        @_hash['access_token'] = 'access_token'
-        @_hash['token_type'] = 'token_type'
-        @_hash['expires_in'] = 'expires_in'
-        @_hash['scope'] = 'scope'
-        @_hash['expiry'] = 'expiry'
-      end
+      @_hash = {} if @_hash.nil?
+      @_hash['access_token'] = 'access_token'
+      @_hash['token_type'] = 'token_type'
+      @_hash['expires_in'] = 'expires_in'
+      @_hash['scope'] = 'scope'
+      @_hash['expiry'] = 'expiry'
       @_hash
     end
 
