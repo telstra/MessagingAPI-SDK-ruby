@@ -1,354 +1,120 @@
-# Getting started
+# Telstra_Messaging
+
+Telstra_Messaging - the Ruby gem for the Telstra Messaging API
+
+ The Telstra SMS Messaging API allows your applications to send and receive SMS text messages from Australia's leading network operator.  It also allows your application to track the delivery status of both sent and received SMS messages. 
 
 
-The Telstra SMS Messaging API allows your applications to send and receive SMS text messages from Australia's leading network operator.
+- API version: 2.2.4
+- Package version: 1.0.1
 
-It also allows your application to track the delivery status of both sent and received SMS messages.
+## Installation
 
+### Build a gem
 
-## How to Build
+To build the Ruby code into a gem:
 
-This client library is a Ruby gem which can be compiled and used in your Ruby and Ruby on Rails project. This library requires a few gems from the RubyGems repository.
-
-1. Open the command line interface or the terminal and navigate to the folder containing the source code.
-2. Run ``` gem build telstra_messaging_api.gemspec ``` to build the gem.
-3. Once built, the gem can be installed on the current work environment using ``` gem install telstra_messaging_api-2.2.3.gem ```
-
-## Initialization
-
-### Example
-
-```ruby
-require 'telstra_messaging_api'
-
-include TelstraMessagingApi
-
-# Configuration parameters and credentials
-o_auth_client_id = 'o_auth_client_id' # OAuth 2 Client ID
-o_auth_client_secret = 'o_auth_client_secret' # OAuth 2 Client Secret
-
-#  create a new client
-client = TelstraMessagingApiClient.new(
-  o_auth_client_id: o_auth_client_id,
-  o_auth_client_secret: o_auth_client_secret
-)
-
-# obtain a new access token
-token = client.auth.authorize(scope: [OAuthScopeEnum::NSMS])
-
-# the client is now authorized and you can use controllers to make endpoint calls
+```shell
+gem build Telstra_Messaging.gemspec
 ```
 
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
+Then either install the gem locally:
 
-# Class Reference
+```shell
+gem install ./Telstra_Messaging-1.0.1.gem
+```
+(for development, run `gem install --dev ./Telstra_Messaging-1.0.1.gem` to install the development dependencies)
 
-## <a name="list_of_controllers"></a>List of Controllers
+or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
-* [ProvisioningController](#provisioning_controller)
-* [MessagingController](#messaging_controller)
+Finally add this to the Gemfile:
 
-## <a name="provisioning_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ProvisioningController") ProvisioningController
+    gem 'Telstra_Messaging', '~> 1.0.1'
 
-### Get singleton instance
+### Install from Git
 
-The singleton instance of the ``` ProvisioningController ``` class can be accessed from the API Client.
+If the Ruby gem is hosted at a git repository: https://github.com/Telstra/Messaging-SDK-Ruby, then add the following in the Gemfile:
 
-```ruby
-provisioning = client.provisioning
+    gem 'Telstra_Messaging', :git => 'https://github.com/Telstra/Messaging-SDK-Ruby.git'
+
+### Include the Ruby code directly
+
+Include the Ruby code directly using `-I` as follows:
+
+```shell
+ruby -Ilib script.rb
 ```
 
-### <a name="delete_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".ProvisioningController.delete_subscription") delete_subscription
+## Getting Started
 
-> Delete Subscription
-
-#### Example Usage
-
+Please follow the [installation](#installation) procedure and then run the following code:
 ```ruby
+# Load the gem
+require 'Telstra_Messaging'
 
-provisioning.delete_subscription()
+api_instance = Telstra_Messaging::AuthenticationApi.new
 
-```
+client_id = "client_id_example" # String | 
 
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
+client_secret = "client_secret_example" # String | 
 
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does not have permission |
-| 404 | The requested URI does not exist |
-| 0 | An internal error occurred when processing the request |
+grant_type = "client_credentials" # String | 
 
 
-
-### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".ProvisioningController.create_subscription") create_subscription
-
-> Create Subscription
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | A JSON payload containing the required attributes |
-
-
-#### Example Usage
-
-```ruby
-body = ProvisionNumberRequest.new
-
-result = provisioning.create_subscription(body)
+begin
+  #Generate authentication token
+  result = api_instance.auth_token(client_id, client_secret, grant_type)
+  p result
+rescue Telstra_Messaging::ApiError => e
+  puts "Exception when calling AuthenticationApi->auth_token: #{e}"
+end
 
 ```
 
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does not have permission |
-| 404 | The requested URI does not exist |
-| 0 | An internal error occurred when processing the request |
-
-
-
-### <a name="get_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".ProvisioningController.get_subscription") get_subscription
-
-> Get Subscription
-
-#### Example Usage
-
-```ruby
-
-result = provisioning.get_subscription()
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does not have permission |
-| 404 | The requested URI does not exist |
-| 0 | An internal error occurred when processing the request |
-
-
-
-[Back to List of Controllers](#list_of_controllers)
-
-## <a name="messaging_controller"></a>![Class: ](https://apidocs.io/img/class.png ".MessagingController") MessagingController
-
-### Get singleton instance
-
-The singleton instance of the ``` MessagingController ``` class can be accessed from the API Client.
-
-```ruby
-messaging = client.messaging
-```
-
-### <a name="retrieve_sms_responses"></a>![Method: ](https://apidocs.io/img/method.png ".MessagingController.retrieve_sms_responses") retrieve_sms_responses
-
-> Retrieve SMS Responses
-
-#### Example Usage
-
-```ruby
-
-result = messaging.retrieve_sms_responses()
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does<br>not have permission |
-| 404 | The requested URI does not exist |
-| 405 | The requested resource does not support the supplied verb |
-| 415 | API does not support the requested content type |
-| 422 | The request is formed correctly, but due to some condition<br>the request cannot be processed e.g. email is required and it is not provided<br>in the request |
-| 501 | The HTTP method being used has not yet been implemented for<br>the requested resource |
-| 503 | The service requested is currently unavailable |
-| 0 | An internal error occurred when processing the request |
-
-
-
-### <a name="create_send_sms"></a>![Method: ](https://apidocs.io/img/method.png ".MessagingController.create_send_sms") create_send_sms
-
-> Send SMS
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| payload |  ``` Required ```  | A JSON or XML payload containing the recipient's phone number and text message.
-
-The recipient number should be in the format '04xxxxxxxx' where x is a digit |
-
-
-#### Example Usage
-
-```ruby
-payload = SendSMSRequest.new
-
-result = messaging.create_send_sms(payload)
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does<br>not have permission |
-| 404 | The requested URI does not exist |
-| 405 | The requested resource does not support the supplied verb |
-| 415 | API does not support the requested content type |
-| 422 | The request is formed correctly, but due to some condition<br>the request cannot be processed e.g. email is required and it is not provided<br>in the request |
-| 501 | The HTTP method being used has not yet been implemented for<br>the requested resource |
-| 503 | The service requested is currently unavailable |
-| 0 | An internal error occurred when processing the request |
-
-
-
-### <a name="get_sms_status"></a>![Method: ](https://apidocs.io/img/method.png ".MessagingController.get_sms_status") get_sms_status
-
-> Get SMS Status
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| message_id |  ``` Required ```  | Unique identifier of a message - it is the value returned from a previous POST call to https://api.telstra.com/v2/messages/sms |
-
-
-#### Example Usage
-
-```ruby
-message_id = 'messageId'
-
-result = messaging.get_sms_status(message_id)
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does<br>not have permission |
-| 404 | The requested URI does not exist |
-| 405 | The requested resource does not support the supplied verb |
-| 415 | API does not support the requested content type |
-| 422 | The request is formed correctly, but due to some condition<br>the request cannot be processed e.g. email is required and it is not provided<br>in the request |
-| 501 | The HTTP method being used has not yet been implemented for<br>the requested resource |
-| 503 | The service requested is currently unavailable |
-| 0 | An internal error occurred when processing the request |
-
-
-
-### <a name="create_send_mms"></a>![Method: ](https://apidocs.io/img/method.png ".MessagingController.create_send_mms") create_send_mms
-
-> Send MMS
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | A JSON or XML payload containing the recipient's phone number
-and MMS message.The recipient number should be in the format '04xxxxxxxx'
-where x is a digit |
-
-
-#### Example Usage
-
-```ruby
-body = SendMMSRequest.new
-
-result = messaging.create_send_mms(body)
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does<br>not have permission |
-| 404 | The requested URI does not exist |
-| 405 | The requested resource does not support the supplied verb |
-| 415 | API does not support the requested content type |
-| 422 | The request is formed correctly, but due to some condition<br>the request cannot be processed e.g. email is required and it is not provided<br>in the request |
-| 501 | The HTTP method being used has not yet been implemented for<br>the requested resource |
-| 503 | The service requested is currently unavailable |
-| 0 | An internal error occurred when processing the request |
-
-
-
-### <a name="get_mms_status"></a>![Method: ](https://apidocs.io/img/method.png ".MessagingController.get_mms_status") get_mms_status
-
-> Get MMS Status
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| messageid |  ``` Required ```  | Unique identifier of a message - it is the value returned from
-a previous POST call to https://api.telstra.com/v2/messages/mms |
-
-
-#### Example Usage
-
-```ruby
-messageid = 'messageid'
-
-result = messaging.get_mms_status(messageid)
-
-```
-
-See the documentation at [Dev.Telstra.com](https://dev.telstra.com/content/messaging-api) for more information
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid or missing request parameters |
-| 401 | Invalid or no credentials passed in the request |
-| 403 | Authorization credentials passed and accepted but account does<br>not have permission |
-| 404 | The requested URI does not exist |
-| 405 | The requested resource does not support the supplied verb |
-| 415 | API does not support the requested content type |
-| 422 | The request is formed correctly, but due to some condition<br>the request cannot be processed e.g. email is required and it is not provided<br>in the request |
-| 501 | The HTTP method being used has not yet been implemented for<br>the requested resource |
-| 503 | The service requested is currently unavailable |
-| 0 | An internal error occurred when processing the request |
-
-
-
-[Back to List of Controllers](#list_of_controllers)
-
-
+## Documentation for API Endpoints
+
+All URIs are relative to *https://tapi.telstra.com/v2*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*Telstra_Messaging::AuthenticationApi* | [**auth_token**](docs/AuthenticationApi.md#auth_token) | **POST** /oauth/token | Generate authentication token
+*Telstra_Messaging::MessagingApi* | [**get_mms_status**](docs/MessagingApi.md#get_mms_status) | **GET** /messages/mms/{messageid}/status | Get MMS Status
+*Telstra_Messaging::MessagingApi* | [**get_sms_status**](docs/MessagingApi.md#get_sms_status) | **GET** /messages/sms/{messageId}/status | Get SMS Status
+*Telstra_Messaging::MessagingApi* | [**retrieve_sms_responses**](docs/MessagingApi.md#retrieve_sms_responses) | **GET** /messages/sms | Retrieve SMS Responses
+*Telstra_Messaging::MessagingApi* | [**send_mms**](docs/MessagingApi.md#send_mms) | **POST** /messages/mms | Send MMS
+*Telstra_Messaging::MessagingApi* | [**send_sms**](docs/MessagingApi.md#send_sms) | **POST** /messages/sms | Send SMS
+*Telstra_Messaging::ProvisioningApi* | [**create_subscription**](docs/ProvisioningApi.md#create_subscription) | **POST** /messages/provisioning/subscriptions | Create Subscription
+*Telstra_Messaging::ProvisioningApi* | [**delete_subscription**](docs/ProvisioningApi.md#delete_subscription) | **DELETE** /messages/provisioning/subscriptions | Delete Subscription
+*Telstra_Messaging::ProvisioningApi* | [**get_subscription**](docs/ProvisioningApi.md#get_subscription) | **GET** /messages/provisioning/subscriptions | Get Subscription
+
+
+## Documentation for Models
+
+ - [Telstra_Messaging::ErrorError](docs/ErrorError.md)
+ - [Telstra_Messaging::ErrorErrorError](docs/ErrorErrorError.md)
+ - [Telstra_Messaging::InboundPollResponse](docs/InboundPollResponse.md)
+ - [Telstra_Messaging::MMSContent](docs/MMSContent.md)
+ - [Telstra_Messaging::Message](docs/Message.md)
+ - [Telstra_Messaging::MessageSentResponse](docs/MessageSentResponse.md)
+ - [Telstra_Messaging::MessageType](docs/MessageType.md)
+ - [Telstra_Messaging::OAuthRequest](docs/OAuthRequest.md)
+ - [Telstra_Messaging::OAuthResponse](docs/OAuthResponse.md)
+ - [Telstra_Messaging::OutboundPollResponse](docs/OutboundPollResponse.md)
+ - [Telstra_Messaging::ProvisionNumberRequest](docs/ProvisionNumberRequest.md)
+ - [Telstra_Messaging::ProvisionNumberResponse](docs/ProvisionNumberResponse.md)
+ - [Telstra_Messaging::SendMmsRequest](docs/SendMmsRequest.md)
+ - [Telstra_Messaging::SendSMSRequest](docs/SendSMSRequest.md)
+ - [Telstra_Messaging::Status](docs/Status.md)
+
+
+## Documentation for Authorization
+
+
+### auth
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: 
+  - NSMS: NSMS
 
