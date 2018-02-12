@@ -6,6 +6,6 @@ Name | Type | Description | Notes
 **to** | **String** |  | 
 **delivery_status** | **String** |  | 
 **message_id** | **String** |  | 
-**message_status_url** | **String** |  | 
+**message_status_url** | **String** |  | [optional] 
 
 

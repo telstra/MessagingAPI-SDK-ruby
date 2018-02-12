@@ -15,10 +15,10 @@ require 'date'
 module Telstra_Messaging
 
   class ProvisionNumberRequest
-    # 
+    # Number of active days
     attr_accessor :active_days
 
-    # 
+    # Notify url
     attr_accessor :notify_url
 
 

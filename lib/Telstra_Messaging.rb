@@ -17,8 +17,10 @@ require 'Telstra_Messaging/version'
 require 'Telstra_Messaging/configuration'
 
 # Models
+require 'Telstra_Messaging/models/delete_number_request'
 require 'Telstra_Messaging/models/error_error'
 require 'Telstra_Messaging/models/error_error_error'
+require 'Telstra_Messaging/models/get_subscription_response'
 require 'Telstra_Messaging/models/inbound_poll_response'
 require 'Telstra_Messaging/models/mms_content'
 require 'Telstra_Messaging/models/message'

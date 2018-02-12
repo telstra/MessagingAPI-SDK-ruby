@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create_subscription**
-> ProvisionNumberResponse create_subscription(authorization, body)
+> ProvisionNumberResponse create_subscription(body)
 
 Create Subscription
 
@@ -28,14 +28,12 @@ end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
 
-authorization = "authorization_example" # String | An OAUTH bearer token that is entitled to use the 'SUBSCRIPTION' scope.
-
 body = Telstra_Messaging::ProvisionNumberRequest.new # ProvisionNumberRequest | A JSON payload containing the required attributes
 
 
 begin
   #Create Subscription
-  result = api_instance.create_subscription(authorization, body)
+  result = api_instance.create_subscription(body)
   p result
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->create_subscription: #{e}"
@@ -46,7 +44,6 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String**| An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope. | 
  **body** | [**ProvisionNumberRequest**](ProvisionNumberRequest.md)| A JSON payload containing the required attributes | 
 
 ### Return type
@@ -65,7 +62,7 @@ Name | Type | Description  | Notes
 
 
 # **delete_subscription**
-> delete_subscription(authorization)
+> delete_subscription(body)
 
 Delete Subscription
 
@@ -83,12 +80,12 @@ end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
 
-authorization = "authorization_example" # String | An OAUTH bearer token that is entitled to use the 'SUBSCRIPTION' scope.
+body = Telstra_Messaging::DeleteNumberRequest.new # DeleteNumberRequest | EmptyArr
 
 
 begin
   #Delete Subscription
-  api_instance.delete_subscription(authorization)
+  api_instance.delete_subscription(body)
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->delete_subscription: #{e}"
 end
@@ -98,7 +95,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String**| An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope. | 
+ **body** | [**DeleteNumberRequest**](DeleteNumberRequest.md)| EmptyArr | 
 
 ### Return type
 
@@ -116,7 +113,7 @@ nil (empty response body)
 
 
 # **get_subscription**
-> Array&lt;ProvisionNumberResponse&gt; get_subscription(authorization)
+> GetSubscriptionResponse get_subscription
 
 Get Subscription
 
@@ -134,12 +131,9 @@ end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
 
-authorization = "authorization_example" # String | An OAUTH bearer token that is entitled to use the 'SUBSCRIPTION' scope.
-
-
 begin
   #Get Subscription
-  result = api_instance.get_subscription(authorization)
+  result = api_instance.get_subscription
   p result
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->get_subscription: #{e}"
@@ -147,14 +141,11 @@ end
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **authorization** | **String**| An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope. | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**Array&lt;ProvisionNumberResponse&gt;**](ProvisionNumberResponse.md)
+[**GetSubscriptionResponse**](GetSubscriptionResponse.md)
 
 ### Authorization
 

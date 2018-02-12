@@ -11,5 +11,5 @@ Swagger Codegen version: unset
 =end
 
 module Telstra_Messaging
-  VERSION = "1.0.1"
+  VERSION = "1.0.2"
 end

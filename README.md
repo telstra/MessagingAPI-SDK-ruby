@@ -6,7 +6,7 @@ Telstra_Messaging - the Ruby gem for the Telstra Messaging API
 
 
 - API version: 2.2.4
-- Package version: 1.0.1
+- Package version: 1.0.2
 
 ## Installation
 
@@ -21,21 +21,21 @@ gem build Telstra_Messaging.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./Telstra_Messaging-1.0.1.gem
+gem install ./Telstra_Messaging-1.0.2.gem
 ```
-(for development, run `gem install --dev ./Telstra_Messaging-1.0.1.gem` to install the development dependencies)
+(for development, run `gem install --dev ./Telstra_Messaging-1.0.2.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'Telstra_Messaging', '~> 1.0.1'
+    gem 'Telstra_Messaging', '~> 1.0.2'
 
 ### Install from Git
 
-If the Ruby gem is hosted at a git repository: https://github.com/Telstra/Messaging-SDK-Ruby, then add the following in the Gemfile:
+If the Ruby gem is hosted at a git repository: https://github.com/Telstra/MessagingAPI-SDK-Ruby, then add the following in the Gemfile:
 
-    gem 'Telstra_Messaging', :git => 'https://github.com/Telstra/Messaging-SDK-Ruby.git'
+    gem 'Telstra_Messaging', :git => 'https://github.com/Telstra/MessagingAPI-SDK-Ruby.git'
 
 ### Include the Ruby code directly
 
@@ -90,8 +90,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [Telstra_Messaging::DeleteNumberRequest](docs/DeleteNumberRequest.md)
  - [Telstra_Messaging::ErrorError](docs/ErrorError.md)
  - [Telstra_Messaging::ErrorErrorError](docs/ErrorErrorError.md)
+ - [Telstra_Messaging::GetSubscriptionResponse](docs/GetSubscriptionResponse.md)
  - [Telstra_Messaging::InboundPollResponse](docs/InboundPollResponse.md)
  - [Telstra_Messaging::MMSContent](docs/MMSContent.md)
  - [Telstra_Messaging::Message](docs/Message.md)
@@ -107,14 +109,14 @@ Class | Method | HTTP request | Description
  - [Telstra_Messaging::Status](docs/Status.md)
 
 
-## Documentation for Authorization
+## Documentation for Authorisation
 
 
 ### auth
 
 - **Type**: OAuth
 - **Flow**: application
-- **Authorization URL**: 
+- **Authorisation URL**: 
 - **Scopes**: 
   - NSMS: NSMS
 

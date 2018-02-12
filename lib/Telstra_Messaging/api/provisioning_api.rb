@@ -22,28 +22,22 @@ module Telstra_Messaging
 
     # Create Subscription
     # Provision a mobile number
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
     # @param body A JSON payload containing the required attributes
     # @param [Hash] opts the optional parameters
     # @return [ProvisionNumberResponse]
-    def create_subscription(authorization, body, opts = {})
-      data, _status_code, _headers = create_subscription_with_http_info(authorization, body, opts)
+    def create_subscription(body, opts = {})
+      data, _status_code, _headers = create_subscription_with_http_info(body, opts)
       return data
     end
 
     # Create Subscription
     # Provision a mobile number
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
     # @param body A JSON payload containing the required attributes
     # @param [Hash] opts the optional parameters
     # @return [Array<(ProvisionNumberResponse, Fixnum, Hash)>] ProvisionNumberResponse data, response status code and response headers
-    def create_subscription_with_http_info(authorization, body, opts = {})
+    def create_subscription_with_http_info(body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ProvisioningApi.create_subscription ..."
-      end
-      # verify the required parameter 'authorization' is set
-      if @api_client.config.client_side_validation && authorization.nil?
-        fail ArgumentError, "Missing the required parameter 'authorization' when calling ProvisioningApi.create_subscription"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
@@ -61,7 +55,6 @@ module Telstra_Messaging
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'Authorization'] = authorization
 
       # form parameters
       form_params = {}
@@ -84,26 +77,26 @@ module Telstra_Messaging
 
     # Delete Subscription
     # Delete a mobile number subscription from an account
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
+    # @param body EmptyArr
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def delete_subscription(authorization, opts = {})
-      delete_subscription_with_http_info(authorization, opts)
+    def delete_subscription(body, opts = {})
+      delete_subscription_with_http_info(body, opts)
       return nil
     end
 
     # Delete Subscription
     # Delete a mobile number subscription from an account
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
+    # @param body EmptyArr
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_subscription_with_http_info(authorization, opts = {})
+    def delete_subscription_with_http_info(body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ProvisioningApi.delete_subscription ..."
       end
-      # verify the required parameter 'authorization' is set
-      if @api_client.config.client_side_validation && authorization.nil?
-        fail ArgumentError, "Missing the required parameter 'authorization' when calling ProvisioningApi.delete_subscription"
+      # verify the required parameter 'body' is set
+      if @api_client.config.client_side_validation && body.nil?
+        fail ArgumentError, "Missing the required parameter 'body' when calling ProvisioningApi.delete_subscription"
       end
       # resource path
       local_var_path = "/messages/provisioning/subscriptions"
@@ -117,13 +110,12 @@ module Telstra_Messaging
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'Authorization'] = authorization
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      post_body = @api_client.object_to_http_body(body)
       auth_names = ['auth']
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
         :header_params => header_params,
@@ -139,26 +131,20 @@ module Telstra_Messaging
 
     # Get Subscription
     # Get mobile number subscription for an account
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
     # @param [Hash] opts the optional parameters
-    # @return [Array<ProvisionNumberResponse>]
-    def get_subscription(authorization, opts = {})
-      data, _status_code, _headers = get_subscription_with_http_info(authorization, opts)
+    # @return [GetSubscriptionResponse]
+    def get_subscription(opts = {})
+      data, _status_code, _headers = get_subscription_with_http_info(opts)
       return data
     end
 
     # Get Subscription
     # Get mobile number subscription for an account
-    # @param authorization An OAUTH bearer token that is entitled to use the &#39;SUBSCRIPTION&#39; scope.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<ProvisionNumberResponse>, Fixnum, Hash)>] Array<ProvisionNumberResponse> data, response status code and response headers
-    def get_subscription_with_http_info(authorization, opts = {})
+    # @return [Array<(GetSubscriptionResponse, Fixnum, Hash)>] GetSubscriptionResponse data, response status code and response headers
+    def get_subscription_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ProvisioningApi.get_subscription ..."
-      end
-      # verify the required parameter 'authorization' is set
-      if @api_client.config.client_side_validation && authorization.nil?
-        fail ArgumentError, "Missing the required parameter 'authorization' when calling ProvisioningApi.get_subscription"
       end
       # resource path
       local_var_path = "/messages/provisioning/subscriptions"
@@ -172,7 +158,6 @@ module Telstra_Messaging
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'Authorization'] = authorization
 
       # form parameters
       form_params = {}
@@ -186,7 +171,7 @@ module Telstra_Messaging
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<ProvisionNumberResponse>')
+        :return_type => 'GetSubscriptionResponse')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ProvisioningApi#get_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

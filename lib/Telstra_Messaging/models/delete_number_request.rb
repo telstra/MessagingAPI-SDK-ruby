@@ -14,37 +14,22 @@ require 'date'
 
 module Telstra_Messaging
 
-  class Message
-    # 
-    attr_accessor :to
-
-    # 
-    attr_accessor :delivery_status
-
-    # 
-    attr_accessor :message_id
-
-    # 
-    attr_accessor :message_status_url
+  class DeleteNumberRequest
+    # Empty Arr
+    attr_accessor :empty_arr
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'to' => :'to',
-        :'delivery_status' => :'deliveryStatus',
-        :'message_id' => :'messageId',
-        :'message_status_url' => :'messageStatusURL'
+        :'empty_arr' => :'emptyArr'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'to' => :'String',
-        :'delivery_status' => :'String',
-        :'message_id' => :'String',
-        :'message_status_url' => :'String'
+        :'empty_arr' => :'Integer'
       }
     end
 
@@ -56,20 +41,10 @@ module Telstra_Messaging
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'to')
-        self.to = attributes[:'to']
-      end
-
-      if attributes.has_key?(:'deliveryStatus')
-        self.delivery_status = attributes[:'deliveryStatus']
-      end
-
-      if attributes.has_key?(:'messageId')
-        self.message_id = attributes[:'messageId']
-      end
-
-      if attributes.has_key?(:'messageStatusURL')
-        self.message_status_url = attributes[:'messageStatusURL']
+      if attributes.has_key?(:'emptyArr')
+        self.empty_arr = attributes[:'emptyArr']
+      else
+        self.empty_arr = 0
       end
 
     end
@@ -78,27 +53,12 @@ module Telstra_Messaging
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @to.nil?
-        invalid_properties.push("invalid value for 'to', to cannot be nil.")
-      end
-
-      if @delivery_status.nil?
-        invalid_properties.push("invalid value for 'delivery_status', delivery_status cannot be nil.")
-      end
-
-      if @message_id.nil?
-        invalid_properties.push("invalid value for 'message_id', message_id cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @to.nil?
-      return false if @delivery_status.nil?
-      return false if @message_id.nil?
       return true
     end
 
@@ -107,10 +67,7 @@ module Telstra_Messaging
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          to == o.to &&
-          delivery_status == o.delivery_status &&
-          message_id == o.message_id &&
-          message_status_url == o.message_status_url
+          empty_arr == o.empty_arr
     end
 
     # @see the `==` method
@@ -122,7 +79,7 @@ module Telstra_Messaging
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [to, delivery_status, message_id, message_status_url].hash
+      [empty_arr].hash
     end
 
     # Builds the object from hash

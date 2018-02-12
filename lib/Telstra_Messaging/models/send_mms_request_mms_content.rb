@@ -14,37 +14,32 @@ require 'date'
 
 module Telstra_Messaging
 
-  class Message
-    # 
-    attr_accessor :to
+  class SendMmsRequestMMSContent
+    # The following types are supported audio/amr  audio/aac  audio/mp3  audio/mpeg3  audio/mpeg  audio/mpg  audio/wav  audio/3gpp  audio/mp4  image/gif  image/jpeg  image/jpg  image/png  image/bmp  video/mpeg4  video/mp4  video/mpeg  video/3gpp  video/3gp  video/h263  text/plain  text/x-vCard  text/x-vCalendar
+    attr_accessor :type
+
+    # The file name to be associated with the content. Some devices will display this file name with a placeholder for the content.
+    attr_accessor :filename
 
     # 
-    attr_accessor :delivery_status
-
-    # 
-    attr_accessor :message_id
-
-    # 
-    attr_accessor :message_status_url
+    attr_accessor :payload
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'to' => :'to',
-        :'delivery_status' => :'deliveryStatus',
-        :'message_id' => :'messageId',
-        :'message_status_url' => :'messageStatusURL'
+        :'type' => :'type',
+        :'filename' => :'filename',
+        :'payload' => :'payload'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'to' => :'String',
-        :'delivery_status' => :'String',
-        :'message_id' => :'String',
-        :'message_status_url' => :'String'
+        :'type' => :'String',
+        :'filename' => :'String',
+        :'payload' => :'String'
       }
     end
 
@@ -56,20 +51,16 @@ module Telstra_Messaging
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'to')
-        self.to = attributes[:'to']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.has_key?(:'deliveryStatus')
-        self.delivery_status = attributes[:'deliveryStatus']
+      if attributes.has_key?(:'filename')
+        self.filename = attributes[:'filename']
       end
 
-      if attributes.has_key?(:'messageId')
-        self.message_id = attributes[:'messageId']
-      end
-
-      if attributes.has_key?(:'messageStatusURL')
-        self.message_status_url = attributes[:'messageStatusURL']
+      if attributes.has_key?(:'payload')
+        self.payload = attributes[:'payload']
       end
 
     end
@@ -78,16 +69,16 @@ module Telstra_Messaging
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @to.nil?
-        invalid_properties.push("invalid value for 'to', to cannot be nil.")
+      if @type.nil?
+        invalid_properties.push("invalid value for 'type', type cannot be nil.")
       end
 
-      if @delivery_status.nil?
-        invalid_properties.push("invalid value for 'delivery_status', delivery_status cannot be nil.")
+      if @filename.nil?
+        invalid_properties.push("invalid value for 'filename', filename cannot be nil.")
       end
 
-      if @message_id.nil?
-        invalid_properties.push("invalid value for 'message_id', message_id cannot be nil.")
+      if @payload.nil?
+        invalid_properties.push("invalid value for 'payload', payload cannot be nil.")
       end
 
       return invalid_properties
@@ -96,9 +87,9 @@ module Telstra_Messaging
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @to.nil?
-      return false if @delivery_status.nil?
-      return false if @message_id.nil?
+      return false if @type.nil?
+      return false if @filename.nil?
+      return false if @payload.nil?
       return true
     end
 
@@ -107,10 +98,9 @@ module Telstra_Messaging
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          to == o.to &&
-          delivery_status == o.delivery_status &&
-          message_id == o.message_id &&
-          message_status_url == o.message_status_url
+          type == o.type &&
+          filename == o.filename &&
+          payload == o.payload
     end
 
     # @see the `==` method
@@ -122,7 +112,7 @@ module Telstra_Messaging
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [to, delivery_status, message_id, message_status_url].hash
+      [type, filename, payload].hash
     end
 
     # Builds the object from hash

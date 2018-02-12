@@ -15,46 +15,46 @@ require 'date'
 module Telstra_Messaging
   # Poll for incoming messages returning the latest. Only works if no callback url was specified when provisioning a number.
   class InboundPollResponse
+    # message status
+    attr_accessor :status
+
     # The phone number (recipient) that the message was sent to(in E.164 format).
-    attr_accessor :to
+    attr_accessor :destination_address
 
     # The phone number (sender) that the message was sent from (in E.164 format).
-    attr_accessor :from
+    attr_accessor :sender_address
 
-    # Text body of the message that was sent
-    attr_accessor :body
+    # Text of the message that was sent
+    attr_accessor :message
 
-    # The date and time when the message was recieved by recipient.
-    attr_accessor :received_timestamp
-
-    # Indicates if there are more messages that can be polled from the server. 0=No more messages available. Anything else indicates there are more messages on the server.
-    attr_accessor :more_messages
-
-    # Optional message ID of the SMS you sent. Use this ID to view the message status or get responses.
+    # Message Id
     attr_accessor :message_id
+
+    # The date and time when the message was sent by recipient.
+    attr_accessor :sent_timestamp
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'to' => :'to',
-        :'from' => :'from',
-        :'body' => :'body',
-        :'received_timestamp' => :'receivedTimestamp',
-        :'more_messages' => :'moreMessages',
-        :'message_id' => :'messageId'
+        :'status' => :'status',
+        :'destination_address' => :'destinationAddress',
+        :'sender_address' => :'senderAddress',
+        :'message' => :'message',
+        :'message_id' => :'messageId',
+        :'sent_timestamp' => :'sentTimestamp'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'to' => :'String',
-        :'from' => :'String',
-        :'body' => :'String',
-        :'received_timestamp' => :'String',
-        :'more_messages' => :'Integer',
-        :'message_id' => :'String'
+        :'status' => :'String',
+        :'destination_address' => :'String',
+        :'sender_address' => :'String',
+        :'message' => :'String',
+        :'message_id' => :'String',
+        :'sent_timestamp' => :'String'
       }
     end
 
@@ -66,28 +66,28 @@ module Telstra_Messaging
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'to')
-        self.to = attributes[:'to']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'from')
-        self.from = attributes[:'from']
+      if attributes.has_key?(:'destinationAddress')
+        self.destination_address = attributes[:'destinationAddress']
       end
 
-      if attributes.has_key?(:'body')
-        self.body = attributes[:'body']
+      if attributes.has_key?(:'senderAddress')
+        self.sender_address = attributes[:'senderAddress']
       end
 
-      if attributes.has_key?(:'receivedTimestamp')
-        self.received_timestamp = attributes[:'receivedTimestamp']
-      end
-
-      if attributes.has_key?(:'moreMessages')
-        self.more_messages = attributes[:'moreMessages']
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
       end
 
       if attributes.has_key?(:'messageId')
         self.message_id = attributes[:'messageId']
+      end
+
+      if attributes.has_key?(:'sentTimestamp')
+        self.sent_timestamp = attributes[:'sentTimestamp']
       end
 
     end
@@ -110,12 +110,12 @@ module Telstra_Messaging
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          to == o.to &&
-          from == o.from &&
-          body == o.body &&
-          received_timestamp == o.received_timestamp &&
-          more_messages == o.more_messages &&
-          message_id == o.message_id
+          status == o.status &&
+          destination_address == o.destination_address &&
+          sender_address == o.sender_address &&
+          message == o.message &&
+          message_id == o.message_id &&
+          sent_timestamp == o.sent_timestamp
     end
 
     # @see the `==` method
@@ -127,7 +127,7 @@ module Telstra_Messaging
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [to, from, body, received_timestamp, more_messages, message_id].hash
+      [status, destination_address, sender_address, message, message_id, sent_timestamp].hash
     end
 
     # Builds the object from hash

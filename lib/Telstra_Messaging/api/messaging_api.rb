@@ -24,7 +24,7 @@ module Telstra_Messaging
     # Get MMS Status
     # @param messageid Unique identifier of a message - it is the value returned from a previous POST call to https://api.telstra.com/v2/messages/mms
     # @param [Hash] opts the optional parameters
-    # @return [OutboundPollResponse]
+    # @return [Array<OutboundPollResponse>]
     def get_mms_status(messageid, opts = {})
       data, _status_code, _headers = get_mms_status_with_http_info(messageid, opts)
       return data
@@ -34,7 +34,7 @@ module Telstra_Messaging
     # Get MMS Status
     # @param messageid Unique identifier of a message - it is the value returned from a previous POST call to https://api.telstra.com/v2/messages/mms
     # @param [Hash] opts the optional parameters
-    # @return [Array<(OutboundPollResponse, Fixnum, Hash)>] OutboundPollResponse data, response status code and response headers
+    # @return [Array<(Array<OutboundPollResponse>, Fixnum, Hash)>] Array<OutboundPollResponse> data, response status code and response headers
     def get_mms_status_with_http_info(messageid, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: MessagingApi.get_mms_status ..."
@@ -68,7 +68,7 @@ module Telstra_Messaging
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'OutboundPollResponse')
+        :return_type => 'Array<OutboundPollResponse>')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MessagingApi#get_mms_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -79,7 +79,7 @@ module Telstra_Messaging
     # Get Message Status
     # @param message_id Unique identifier of a message - it is the value returned from a previous POST call to https://api.telstra.com/v2/messages/sms
     # @param [Hash] opts the optional parameters
-    # @return [OutboundPollResponse]
+    # @return [Array<OutboundPollResponse>]
     def get_sms_status(message_id, opts = {})
       data, _status_code, _headers = get_sms_status_with_http_info(message_id, opts)
       return data
@@ -89,7 +89,7 @@ module Telstra_Messaging
     # Get Message Status
     # @param message_id Unique identifier of a message - it is the value returned from a previous POST call to https://api.telstra.com/v2/messages/sms
     # @param [Hash] opts the optional parameters
-    # @return [Array<(OutboundPollResponse, Fixnum, Hash)>] OutboundPollResponse data, response status code and response headers
+    # @return [Array<(Array<OutboundPollResponse>, Fixnum, Hash)>] Array<OutboundPollResponse> data, response status code and response headers
     def get_sms_status_with_http_info(message_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: MessagingApi.get_sms_status ..."
@@ -123,7 +123,7 @@ module Telstra_Messaging
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'OutboundPollResponse')
+        :return_type => 'Array<OutboundPollResponse>')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MessagingApi#get_sms_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -133,7 +133,7 @@ module Telstra_Messaging
     # Retrieve SMS Responses
     # Retrieve Messages
     # @param [Hash] opts the optional parameters
-    # @return [Array<InboundPollResponse>]
+    # @return [InboundPollResponse]
     def retrieve_sms_responses(opts = {})
       data, _status_code, _headers = retrieve_sms_responses_with_http_info(opts)
       return data
@@ -142,7 +142,7 @@ module Telstra_Messaging
     # Retrieve SMS Responses
     # Retrieve Messages
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InboundPollResponse>, Fixnum, Hash)>] Array<InboundPollResponse> data, response status code and response headers
+    # @return [Array<(InboundPollResponse, Fixnum, Hash)>] InboundPollResponse data, response status code and response headers
     def retrieve_sms_responses_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: MessagingApi.retrieve_sms_responses ..."
@@ -172,7 +172,7 @@ module Telstra_Messaging
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InboundPollResponse>')
+        :return_type => 'InboundPollResponse')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MessagingApi#retrieve_sms_responses\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -183,7 +183,7 @@ module Telstra_Messaging
     # Send MMS
     # @param body A JSON or XML payload containing the recipient&#39;s phone number and MMS message.The recipient number should be in the format &#39;04xxxxxxxx&#39; where x is a digit
     # @param [Hash] opts the optional parameters
-    # @return [Object]
+    # @return [MessageSentResponse]
     def send_mms(body, opts = {})
       data, _status_code, _headers = send_mms_with_http_info(body, opts)
       return data
@@ -193,7 +193,7 @@ module Telstra_Messaging
     # Send MMS
     # @param body A JSON or XML payload containing the recipient&#39;s phone number and MMS message.The recipient number should be in the format &#39;04xxxxxxxx&#39; where x is a digit
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @return [Array<(MessageSentResponse, Fixnum, Hash)>] MessageSentResponse data, response status code and response headers
     def send_mms_with_http_info(body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: MessagingApi.send_mms ..."
@@ -227,7 +227,7 @@ module Telstra_Messaging
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'MessageSentResponse')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MessagingApi#send_mms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

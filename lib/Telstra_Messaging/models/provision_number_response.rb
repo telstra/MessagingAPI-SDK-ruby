@@ -15,12 +15,6 @@ require 'date'
 module Telstra_Messaging
 
   class ProvisionNumberResponse
-    # 
-    attr_accessor :active_days
-
-    # 
-    attr_accessor :notify_url
-
     # The mobile phone number that was allocated
     attr_accessor :destination_address
 
@@ -28,8 +22,6 @@ module Telstra_Messaging
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'active_days' => :'activeDays',
-        :'notify_url' => :'notifyURL',
         :'destination_address' => :'destinationAddress'
       }
     end
@@ -37,8 +29,6 @@ module Telstra_Messaging
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'active_days' => :'Integer',
-        :'notify_url' => :'String',
         :'destination_address' => :'String'
       }
     end
@@ -51,14 +41,6 @@ module Telstra_Messaging
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'activeDays')
-        self.active_days = attributes[:'activeDays']
-      end
-
-      if attributes.has_key?(:'notifyURL')
-        self.notify_url = attributes[:'notifyURL']
-      end
-
       if attributes.has_key?(:'destinationAddress')
         self.destination_address = attributes[:'destinationAddress']
       end
@@ -69,27 +51,12 @@ module Telstra_Messaging
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @active_days.nil?
-        invalid_properties.push("invalid value for 'active_days', active_days cannot be nil.")
-      end
-
-      if @notify_url.nil?
-        invalid_properties.push("invalid value for 'notify_url', notify_url cannot be nil.")
-      end
-
-      if @destination_address.nil?
-        invalid_properties.push("invalid value for 'destination_address', destination_address cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @active_days.nil?
-      return false if @notify_url.nil?
-      return false if @destination_address.nil?
       return true
     end
 
@@ -98,8 +65,6 @@ module Telstra_Messaging
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          active_days == o.active_days &&
-          notify_url == o.notify_url &&
           destination_address == o.destination_address
     end
 
@@ -112,7 +77,7 @@ module Telstra_Messaging
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [active_days, notify_url, destination_address].hash
+      [destination_address].hash
     end
 
     # Builds the object from hash
