@@ -2,11 +2,10 @@
 
 Telstra_Messaging - the Ruby gem for the Telstra Messaging API
 
- The Telstra SMS Messaging API allows your applications to send and receive SMS text messages from Australia's leading network operator.  It also allows your application to track the delivery status of both sent and received SMS messages. 
 
 
-- API version: 2.2.4
-- Package version: 1.0.2
+- API version: 2.2.6
+- Package version: 1.0.4
 
 ## Installation
 
@@ -21,15 +20,15 @@ gem build Telstra_Messaging.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./Telstra_Messaging-1.0.2.gem
+gem install ./Telstra_Messaging-1.0.4.gem
 ```
-(for development, run `gem install --dev ./Telstra_Messaging-1.0.2.gem` to install the development dependencies)
+(for development, run `gem install --dev ./Telstra_Messaging-1.0.4.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'Telstra_Messaging', '~> 1.0.2'
+    gem 'Telstra_Messaging', '~> 1.0.4'
 
 ### Install from Git
 
@@ -62,7 +61,7 @@ grant_type = "client_credentials" # String |
 
 
 begin
-  #Generate authentication token
+  #Generate OAuth2 token
   result = api_instance.auth_token(client_id, client_secret, grant_type)
   p result
 rescue Telstra_Messaging::ApiError => e
@@ -77,7 +76,7 @@ All URIs are relative to *https://tapi.telstra.com/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*Telstra_Messaging::AuthenticationApi* | [**auth_token**](docs/AuthenticationApi.md#auth_token) | **POST** /oauth/token | Generate authentication token
+*Telstra_Messaging::AuthenticationApi* | [**auth_token**](docs/AuthenticationApi.md#auth_token) | **POST** /oauth/token | Generate OAuth2 token
 *Telstra_Messaging::MessagingApi* | [**get_mms_status**](docs/MessagingApi.md#get_mms_status) | **GET** /messages/mms/{messageid}/status | Get MMS Status
 *Telstra_Messaging::MessagingApi* | [**get_sms_status**](docs/MessagingApi.md#get_sms_status) | **GET** /messages/sms/{messageId}/status | Get SMS Status
 *Telstra_Messaging::MessagingApi* | [**retrieve_sms_responses**](docs/MessagingApi.md#retrieve_sms_responses) | **GET** /messages/sms | Retrieve SMS Responses
@@ -91,15 +90,11 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Telstra_Messaging::DeleteNumberRequest](docs/DeleteNumberRequest.md)
- - [Telstra_Messaging::ErrorError](docs/ErrorError.md)
- - [Telstra_Messaging::ErrorErrorError](docs/ErrorErrorError.md)
  - [Telstra_Messaging::GetSubscriptionResponse](docs/GetSubscriptionResponse.md)
  - [Telstra_Messaging::InboundPollResponse](docs/InboundPollResponse.md)
  - [Telstra_Messaging::MMSContent](docs/MMSContent.md)
  - [Telstra_Messaging::Message](docs/Message.md)
  - [Telstra_Messaging::MessageSentResponse](docs/MessageSentResponse.md)
- - [Telstra_Messaging::MessageType](docs/MessageType.md)
- - [Telstra_Messaging::OAuthRequest](docs/OAuthRequest.md)
  - [Telstra_Messaging::OAuthResponse](docs/OAuthResponse.md)
  - [Telstra_Messaging::OutboundPollResponse](docs/OutboundPollResponse.md)
  - [Telstra_Messaging::ProvisionNumberRequest](docs/ProvisionNumberRequest.md)
