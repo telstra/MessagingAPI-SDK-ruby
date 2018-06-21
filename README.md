@@ -5,7 +5,7 @@ Telstra_Messaging - the Ruby gem for the Telstra Messaging API
 
 
 - API version: 2.2.6
-- Package version: 1.0.4
+- Package version: 1.0.4.1
 
 ## Installation
 
@@ -20,15 +20,15 @@ gem build Telstra_Messaging.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./Telstra_Messaging-1.0.4.gem
+gem install ./Telstra_Messaging-1.0.4.1.gem
 ```
-(for development, run `gem install --dev ./Telstra_Messaging-1.0.4.gem` to install the development dependencies)
+(for development, run `gem install --dev ./Telstra_Messaging-1.0.4.1.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'Telstra_Messaging', '~> 1.0.4'
+    gem 'Telstra_Messaging', '~> 1.0.4.1'
 
 ### Install from Git
 
@@ -52,13 +52,9 @@ Please follow the [installation](#installation) procedure and then run the follo
 require 'Telstra_Messaging'
 
 api_instance = Telstra_Messaging::AuthenticationApi.new
-
-client_id = "client_id_example" # String | 
-
-client_secret = "client_secret_example" # String | 
-
-grant_type = "client_credentials" # String | 
-
+client_id = 'client_id_example' # String | 
+client_secret = 'client_secret_example' # String | 
+grant_type = 'client_credentials' # String | 
 
 begin
   #Generate OAuth2 token
@@ -79,6 +75,7 @@ Class | Method | HTTP request | Description
 *Telstra_Messaging::AuthenticationApi* | [**auth_token**](docs/AuthenticationApi.md#auth_token) | **POST** /oauth/token | Generate OAuth2 token
 *Telstra_Messaging::MessagingApi* | [**get_mms_status**](docs/MessagingApi.md#get_mms_status) | **GET** /messages/mms/{messageid}/status | Get MMS Status
 *Telstra_Messaging::MessagingApi* | [**get_sms_status**](docs/MessagingApi.md#get_sms_status) | **GET** /messages/sms/{messageId}/status | Get SMS Status
+*Telstra_Messaging::MessagingApi* | [**retrieve_mms_responses**](docs/MessagingApi.md#retrieve_mms_responses) | **GET** /messages/mms | Retrieve MMS Responses
 *Telstra_Messaging::MessagingApi* | [**retrieve_sms_responses**](docs/MessagingApi.md#retrieve_sms_responses) | **GET** /messages/sms | Retrieve SMS Responses
 *Telstra_Messaging::MessagingApi* | [**send_mms**](docs/MessagingApi.md#send_mms) | **POST** /messages/mms | Send MMS
 *Telstra_Messaging::MessagingApi* | [**send_sms**](docs/MessagingApi.md#send_sms) | **POST** /messages/sms | Send SMS

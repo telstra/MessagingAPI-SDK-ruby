@@ -10,11 +10,11 @@ Method | HTTP request | Description
 
 
 # **create_subscription**
-> ProvisionNumberResponse create_subscription(body)
+> ProvisionNumberResponse create_subscription(provision_number_request)
 
 Create Subscription
 
-Invoke the provisioning API to get a dedicated mobile number for an account or application.  <pre><code class=\"language-sh\">   #!/bin/bash   curl -X POST \\   https://tapi.telstra.com/v2/messages/provisioning/subscriptions \\   -H 'authorization: Bearer $ACCESS_TOKEN' \\   -H 'cache-control: no-cache' \\   -H 'content-type: application/json' \\   -d '{   \"activeDays\":30,   \"notifyURL\":\"http://example.com/callback\",   \"callbackData\":     {       \"anything\":\"some data\"     }   }' </code></pre>
+Invoke the provisioning API to get a dedicated mobile number for an account or application. 
 
 ### Example
 ```ruby
@@ -27,13 +27,11 @@ Telstra_Messaging.configure do |config|
 end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
-
-body = Telstra_Messaging::ProvisionNumberRequest.new # ProvisionNumberRequest | A JSON payload containing the required attributes
-
+provision_number_request = Telstra_Messaging::ProvisionNumberRequest.new # ProvisionNumberRequest | A JSON payload containing the required attributes
 
 begin
   #Create Subscription
-  result = api_instance.create_subscription(body)
+  result = api_instance.create_subscription(provision_number_request)
   p result
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->create_subscription: #{e}"
@@ -44,7 +42,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ProvisionNumberRequest**](ProvisionNumberRequest.md)| A JSON payload containing the required attributes | 
+ **provision_number_request** | [**ProvisionNumberRequest**](ProvisionNumberRequest.md)| A JSON payload containing the required attributes | 
 
 ### Return type
 
@@ -62,11 +60,11 @@ Name | Type | Description  | Notes
 
 
 # **delete_subscription**
-> delete_subscription(body)
+> delete_subscription(delete_number_request)
 
 Delete Subscription
 
-Delete a mobile number subscription from an account
+Delete a mobile number subscription from an account 
 
 ### Example
 ```ruby
@@ -79,13 +77,11 @@ Telstra_Messaging.configure do |config|
 end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
-
-body = Telstra_Messaging::DeleteNumberRequest.new # DeleteNumberRequest | EmptyArr
-
+delete_number_request = Telstra_Messaging::DeleteNumberRequest.new # DeleteNumberRequest | EmptyArr
 
 begin
   #Delete Subscription
-  api_instance.delete_subscription(body)
+  api_instance.delete_subscription(delete_number_request)
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->delete_subscription: #{e}"
 end
@@ -95,7 +91,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DeleteNumberRequest**](DeleteNumberRequest.md)| EmptyArr | 
+ **delete_number_request** | [**DeleteNumberRequest**](DeleteNumberRequest.md)| EmptyArr | 
 
 ### Return type
 
@@ -108,7 +104,7 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 
@@ -117,7 +113,7 @@ nil (empty response body)
 
 Get Subscription
 
-Get mobile number subscription for an account
+Get mobile number subscription for an account 
 
 ### Example
 ```ruby
@@ -153,7 +149,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
