@@ -4,8 +4,8 @@ Telstra_Messaging - the Ruby gem for the Telstra Messaging API
 
 
 
-- API version: 2.2.6
-- Package version: 1.0.4.1
+- API version: 2.2.7
+- Package version: 1.0.5
 
 ## Installation
 
@@ -20,15 +20,15 @@ gem build Telstra_Messaging.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./Telstra_Messaging-1.0.4.1.gem
+gem install ./Telstra_Messaging-1.0.5.gem
 ```
-(for development, run `gem install --dev ./Telstra_Messaging-1.0.4.1.gem` to install the development dependencies)
+(for development, run `gem install --dev ./Telstra_Messaging-1.0.5.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'Telstra_Messaging', '~> 1.0.4.1'
+    gem 'Telstra_Messaging', '~> 1.0.5'
 
 ### Install from Git
 

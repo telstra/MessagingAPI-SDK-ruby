@@ -274,7 +274,7 @@ Telstra_Messaging.configure do |config|
 end
 
 api_instance = Telstra_Messaging::MessagingApi.new
-send_sms_request = Telstra_Messaging::SendSMSRequest.new # SendSMSRequest | A JSON or XML payload containing the recipient's phone number and text message. This number can be in international format if preceeded by a +61 or in national format ('04xxxxxxxx') where x is a digit.
+send_sms_request = Telstra_Messaging::SendSMSRequest.new # SendSMSRequest | A JSON or XML payload containing the recipient's phone number and text message. This number can be in international format if preceeded by a '+' or in national format ('04xxxxxxxx') where x is a digit.
 
 
 begin
@@ -290,7 +290,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **send_sms_request** | [**SendSMSRequest**](SendSMSRequest.md)| A JSON or XML payload containing the recipient&#39;s phone number and text message. This number can be in international format if preceeded by a +61 or in national format (&#39;04xxxxxxxx&#39;) where x is a digit.
+ **send_sms_request** | [**SendSMSRequest**](SendSMSRequest.md)| A JSON or XML payload containing the recipient&#39;s phone number and text message. This number can be in international format if preceeded by a &#39;+&#39; or in national format (&#39;04xxxxxxxx&#39;) where x is a digit.
  | 
 
 ### Return type
