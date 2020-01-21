@@ -9,14 +9,17 @@ Method | HTTP request | Description
 [**get_subscription**](ProvisioningApi.md#get_subscription) | **GET** /messages/provisioning/subscriptions | Get Subscription
 
 
-# **create_subscription**
-> ProvisionNumberResponse create_subscription(provision_number_request)
+
+## create_subscription
+
+> ProvisionNumberResponse create_subscription(body)
 
 Create Subscription
 
-Invoke the provisioning API to get a dedicated mobile number for an account or application. Note that Free Trial apps will have a 30-Day Limit for their provisioned number. If the Provisioning call is made several times within that 30-Day period, it will return the `expiryDate` in the Unix format and will not add any activeDays until after that `expiryDate`.  For paid apps, a provisioned number can be allotted for a maximum of 5 years. If a Provisioning call is made which will result to activeDays > 1830, the response body will indicate that the provisioned number is already valid for more than 5 years. 
+Invoke the provisioning API to get a dedicated mobile number for an account or application.  Note that Free Trial apps will have a 30-Day Limit for their provisioned number. If the Provisioning call is made several times within that 30-Day period, it will return the `expiryDate` in the Unix format and will not add any activeDays until after that `expiryDate`. After the `expiryDate`, you may make another Provisioning call to extend the activeDays by another 30-Days.  For paid apps, a provisioned number can be allotted for a maximum of 5 years. If a Provisioning call is made which will result to activeDays > 1825, a 409 `Active Days Max` response will be returned to indicate that the provisioned number is already valid for more than 5 years and that no update to activeDays has been made. 
 
 ### Example
+
 ```ruby
 # load the gem
 require 'Telstra_Messaging'
@@ -27,11 +30,11 @@ Telstra_Messaging.configure do |config|
 end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
-provision_number_request = Telstra_Messaging::ProvisionNumberRequest.new # ProvisionNumberRequest | A JSON payload containing the required attributes
+body = Telstra_Messaging::ProvisionNumberRequest.new # ProvisionNumberRequest | A JSON payload containing the required attributes
 
 begin
   #Create Subscription
-  result = api_instance.create_subscription(provision_number_request)
+  result = api_instance.create_subscription(body)
   p result
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->create_subscription: #{e}"
@@ -40,9 +43,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provision_number_request** | [**ProvisionNumberRequest**](ProvisionNumberRequest.md)| A JSON payload containing the required attributes | 
+ **body** | [**ProvisionNumberRequest**](ProvisionNumberRequest.md)| A JSON payload containing the required attributes | 
 
 ### Return type
 
@@ -54,19 +58,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## delete_subscription
 
-# **delete_subscription**
-> delete_subscription(delete_number_request)
+> delete_subscription(body)
 
 Delete Subscription
 
 Delete a mobile number subscription from an account 
 
 ### Example
+
 ```ruby
 # load the gem
 require 'Telstra_Messaging'
@@ -77,11 +82,11 @@ Telstra_Messaging.configure do |config|
 end
 
 api_instance = Telstra_Messaging::ProvisioningApi.new
-delete_number_request = Telstra_Messaging::DeleteNumberRequest.new # DeleteNumberRequest | EmptyArr
+body = Telstra_Messaging::DeleteNumberRequest.new # DeleteNumberRequest | EmptyArr
 
 begin
   #Delete Subscription
-  api_instance.delete_subscription(delete_number_request)
+  api_instance.delete_subscription(body)
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling ProvisioningApi->delete_subscription: #{e}"
 end
@@ -89,9 +94,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_number_request** | [**DeleteNumberRequest**](DeleteNumberRequest.md)| EmptyArr | 
+ **body** | [**DeleteNumberRequest**](DeleteNumberRequest.md)| EmptyArr | 
 
 ### Return type
 
@@ -103,12 +109,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 
+## get_subscription
 
-# **get_subscription**
 > GetSubscriptionResponse get_subscription
 
 Get Subscription
@@ -116,6 +122,7 @@ Get Subscription
 Get mobile number subscription for an account 
 
 ### Example
+
 ```ruby
 # load the gem
 require 'Telstra_Messaging'
@@ -137,6 +144,7 @@ end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -149,8 +157,6 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
