@@ -1,10 +1,5 @@
 FROM ruby:2.7.0
 
-ARG PROXY="http://D827053:tfy%404P7CJNI%26J%5eh9E35v@bcani.tcif.telstra.com.au:8080"
-
-ENV http_proxy $PROXY
-ENV https_proxy $PROXY
-
 WORKDIR /app
 COPY . .
 
