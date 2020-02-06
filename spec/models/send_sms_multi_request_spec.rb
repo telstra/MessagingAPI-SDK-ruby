@@ -1,7 +1,7 @@
 =begin
 #Telstra Messaging API
 
-#The API specification for Telstra Messaging API
+#The Telstra Messaging API specification
 
 The version of the OpenAPI document: 2.2.9
 
@@ -38,7 +38,7 @@ describe 'SendSmsMultiRequest' do
     end
   end
 
-  describe 'test attribute "notiy_url"' do
+  describe 'test attribute "notify_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

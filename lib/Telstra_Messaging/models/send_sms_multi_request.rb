@@ -1,7 +1,7 @@
 =begin
 #Telstra Messaging API
 
-#The API specification for Telstra Messaging API
+#The Telstra Messaging API specification
 
 The version of the OpenAPI document: 2.2.9
 
@@ -17,14 +17,14 @@ module Telstra_Messaging
     # Multiple SMS. Up to 10 messages can be sent in one API call.
     attr_accessor :sms_multi
 
-    # Contains a URL that will be called once your message has been processed. The status may be delivered, expired, deleted, etc. Please refer to the Delivery Status section for more information.  If you are using a domain URL you must include the forward slash at the end of the URL (e.g. http://www.example.com/). 
-    attr_accessor :notiy_url
+    # Contains a URL that will be called once your message has been processed. The status may be delivered, expired, deleted, etc. Please refer to the Delivery Status section for more information.  If you are using a domain URL you must include the forward slash at the end of the URL (e.g. http://www.example.com/).  This is required when `\"receiptOff\"` is missing or `\"receiptOff\":\"false\"`. 
+    attr_accessor :notify_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'sms_multi' => :'smsMulti',
-        :'notiy_url' => :'notiyURL'
+        :'notify_url' => :'notifyURL'
       }
     end
 
@@ -32,7 +32,7 @@ module Telstra_Messaging
     def self.openapi_types
       {
         :'sms_multi' => :'Array<MessageMulti>',
-        :'notiy_url' => :'String'
+        :'notify_url' => :'String'
       }
     end
 
@@ -63,8 +63,8 @@ module Telstra_Messaging
         end
       end
 
-      if attributes.key?(:'notiy_url')
-        self.notiy_url = attributes[:'notiy_url']
+      if attributes.key?(:'notify_url')
+        self.notify_url = attributes[:'notify_url']
       end
     end
 
@@ -87,7 +87,7 @@ module Telstra_Messaging
       return true if self.equal?(o)
       self.class == o.class &&
           sms_multi == o.sms_multi &&
-          notiy_url == o.notiy_url
+          notify_url == o.notify_url
     end
 
     # @see the `==` method
@@ -99,7 +99,7 @@ module Telstra_Messaging
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sms_multi, notiy_url].hash
+      [sms_multi, notify_url].hash
     end
 
     # Builds the object from hash

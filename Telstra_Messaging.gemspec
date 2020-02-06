@@ -1,9 +1,9 @@
-# encoding: utf-8
+# -*- encoding: utf-8 -*-
 
 =begin
 #Telstra Messaging API
 
-#The API specification for Telstra Messaging API
+#The Telstra Messaging API specification
 
 The version of the OpenAPI document: 2.2.9
 
@@ -15,9 +15,6 @@ OpenAPI Generator version: 4.2.3-SNAPSHOT
 $:.push File.expand_path("../lib", __FILE__)
 require "Telstra_Messaging/version"
 
-Encoding.default_external = Encoding::UTF_8
-Encoding.default_internal = Encoding::UTF_8
-
 Gem::Specification.new do |s|
   s.name        = "Telstra_Messaging"
   s.version     = Telstra_Messaging::VERSION
@@ -26,7 +23,7 @@ Gem::Specification.new do |s|
   s.email       = [""]
   s.homepage    = "https://dev.telstra.com"
   s.summary     = "Telstra Messaging API Ruby Gem"
-  s.description = "The API specification for Telstra Messaging API"
+  s.description = "The Telstra Messaging API specification"
   s.license     = 'Apache-2.0'
   s.required_ruby_version = ">= 1.9"
 

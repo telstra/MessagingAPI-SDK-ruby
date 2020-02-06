@@ -5,6 +5,8 @@ COPY . .
 
 RUN bundle install --verbose
 
+RUN rake
+
 RUN gem build Telstra_Messaging.gemspec
 
 RUN gem install ./Telstra_Messaging-1.0.8.gem

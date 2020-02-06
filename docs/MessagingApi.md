@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_mms_status**](MessagingApi.md#get_mms_status) | **GET** /messages/mms/{messageid}/status | Get MMS Status
 [**get_sms_status**](MessagingApi.md#get_sms_status) | **GET** /messages/sms/{messageId}/status | Get SMS Status
-[**m_ms_health_check**](MessagingApi.md#m_ms_health_check) | **GET** /messages/mms/heathcheck | MMS Health Check
+[**m_ms_health_check**](MessagingApi.md#m_ms_health_check) | **GET** /messages/mms/healthcheck | MMS Health Check
 [**retrieve_mms_replies**](MessagingApi.md#retrieve_mms_replies) | **GET** /messages/mms | Retrieve MMS Replies
 [**retrieve_sms_replies**](MessagingApi.md#retrieve_sms_replies) | **GET** /messages/sms | Retrieve SMS Replies
-[**s_ms_health_check**](MessagingApi.md#s_ms_health_check) | **GET** /messages/sms/heathcheck | SMS Health Check
+[**s_ms_health_check**](MessagingApi.md#s_ms_health_check) | **GET** /messages/sms/healthcheck | SMS Health Check
 [**s_ms_multi**](MessagingApi.md#s_ms_multi) | **POST** /messages/sms/multi | Send Multiple SMS
 [**send_mms**](MessagingApi.md#send_mms) | **POST** /messages/mms | Send MMS
 [**send_sms**](MessagingApi.md#send_sms) | **POST** /messages/sms | Send SMS
@@ -315,6 +315,11 @@ Send multiple SMS in one API call.
 ```ruby
 # load the gem
 require 'Telstra_Messaging'
+# setup authorization
+Telstra_Messaging.configure do |config|
+  # Configure OAuth2 access token for authorization: auth
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
 
 api_instance = Telstra_Messaging::MessagingApi.new
 payload = Telstra_Messaging::SendSmsMultiRequest.new # SendSmsMultiRequest | A JSON payload containing the recipient's phone number and text message. This number can be in international format if preceeded by a '+' or in national format ('04xxxxxxxx') where x is a digit. 
@@ -341,7 +346,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[auth](../README.md#auth)
 
 ### HTTP request headers
 

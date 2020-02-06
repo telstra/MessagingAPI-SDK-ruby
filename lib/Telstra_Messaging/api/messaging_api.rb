@@ -1,7 +1,7 @@
 =begin
 #Telstra Messaging API
 
-#The API specification for Telstra Messaging API
+#The Telstra Messaging API specification
 
 The version of the OpenAPI document: 2.2.9
 
@@ -161,7 +161,7 @@ module Telstra_Messaging
         @api_client.config.logger.debug 'Calling API: MessagingApi.m_ms_health_check ...'
       end
       # resource path
-      local_var_path = '/messages/mms/heathcheck'
+      local_var_path = '/messages/mms/healthcheck'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -329,7 +329,7 @@ module Telstra_Messaging
         @api_client.config.logger.debug 'Calling API: MessagingApi.s_ms_health_check ...'
       end
       # resource path
-      local_var_path = '/messages/sms/heathcheck'
+      local_var_path = '/messages/sms/healthcheck'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -413,7 +413,7 @@ module Telstra_Messaging
       return_type = opts[:return_type] || 'MessageSentResponseSms' 
 
       # auth_names
-      auth_names = opts[:auth_names] || []
+      auth_names = opts[:auth_names] || ['auth']
 
       new_options = opts.merge(
         :header_params => header_params,
