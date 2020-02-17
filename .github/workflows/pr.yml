@@ -1,0 +1,19 @@
+name: validate-pr
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout Project"
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: "Docker run test"
+      env: # Or as an environment variable
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        PHONE_NO: ${{ secrets.PHONE_NO }}
+        FROM_ALIAS: ${{ secrets.FROM_ALIAS }}
+      run: docker-compose up --build --exit-code-from telstradev

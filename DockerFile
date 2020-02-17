@@ -1,0 +1,14 @@
+FROM ruby:2.7.0
+
+WORKDIR /app
+COPY . .
+
+RUN bundle install --verbose
+
+RUN rake
+
+RUN gem build Telstra_Messaging.gemspec
+
+RUN gem install ./Telstra_Messaging-1.0.8.gem
+
+CMD ["ruby", "backward-compat-test.rb"]

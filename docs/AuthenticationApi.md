@@ -7,14 +7,17 @@ Method | HTTP request | Description
 [**auth_token**](AuthenticationApi.md#auth_token) | **POST** /oauth/token | Generate OAuth2 token
 
 
-# **auth_token**
-> OAuthResponse auth_token(client_id, client_secret, grant_type)
+
+## auth_token
+
+> OAuthResponse auth_token(client_id, client_secret, grant_type, opts)
 
 Generate OAuth2 token
 
-To generate an OAuth2 Authentication token, pass through your `Client key` and `Client secret` that you received when you registered for the **API Free Trial** Product. The grant_type should be left as `client_credentials` and the scope as `NSMS`. The token will expire in one hour. 
+To generate an OAuth2 Authentication token, pass through your `Client key` and `Client secret` that you received when you registered for the **API Free Trial** Product.  The grant_type should be left as `client_credentials` and the scope as `NSMS`.  The token will expire in one hour. 
 
 ### Example
+
 ```ruby
 # load the gem
 require 'Telstra_Messaging'
@@ -23,10 +26,13 @@ api_instance = Telstra_Messaging::AuthenticationApi.new
 client_id = 'client_id_example' # String | 
 client_secret = 'client_secret_example' # String | 
 grant_type = 'client_credentials' # String | 
+opts = {
+  scope: 'scope_example' # String | NSMS
+}
 
 begin
   #Generate OAuth2 token
-  result = api_instance.auth_token(client_id, client_secret, grant_type)
+  result = api_instance.auth_token(client_id, client_secret, grant_type, opts)
   p result
 rescue Telstra_Messaging::ApiError => e
   puts "Exception when calling AuthenticationApi->auth_token: #{e}"
@@ -35,11 +41,13 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **client_id** | **String**|  | 
  **client_secret** | **String**|  | 
  **grant_type** | **String**|  | [default to &#39;client_credentials&#39;]
+ **scope** | **String**| NSMS | [optional] 
 
 ### Return type
 
@@ -51,8 +59,6 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json
 
